@@ -20,20 +20,20 @@ const Login = () => (
   >
     <Form
       name="basic"
-      labelCol={{
-        span: 8,
-      }}
-      wrapperCol={{
-        span: 16,
-      }}
+      labelCol={{}}
+      wrapperCol={{}}
       style={{
         display: 'flex',
         flexDirection: 'column',
+        flexBasis: '50%',
         alignItems: 'center',
+        justifyItems: 'stretch',
+        justifyContent: 'stretch',
         backgroundColor: Colors.primaryBackground,
         borderRadius: 5,
         width: '50%',
         padding: 20,
+        margin: '5%',
       }}
       initialValues={{
         remember: true,
@@ -68,27 +68,19 @@ const Login = () => (
         <Input.Password />
       </Form.Item>
 
-      {/* <Form.Item
-        name="remember"
-        valuePropName="checked"
-        wrapperCol={{
-          offset: 8,
-          span: 16,
-        }}
-      >
-        <Checkbox>Remember me</Checkbox>
-      </Form.Item> */}
-
-      <Form.Item
-        wrapperCol={{
-          offset: 8,
-          span: 16,
-        }}
-      >
-        <Button type="primary" htmlType="submit">
+      <Form.Item wrapperCol={{}}>
+        <Button
+          style={{ margin: 10, width: '100%' }}
+          type="primary"
+          htmlType="submit"
+        >
           Entrar
         </Button>
-        <Button type="primary" htmlType="submit">
+        <Button
+          style={{ margin: 10, width: '100%' }}
+          type="primary"
+          htmlType="submit"
+        >
           Novo usuário
         </Button>
       </Form.Item>
