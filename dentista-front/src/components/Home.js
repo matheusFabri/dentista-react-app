@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {
   LaptopOutlined,
   NotificationOutlined,
   UserOutlined,
 } from '@ant-design/icons';
 import { Breadcrumb, Layout, Menu, theme } from 'antd';
+import { AuthContext } from '../store/AuthContext';
 const { Header, Content, Sider } = Layout;
 const items1 = ['1', '2', '3'].map((key) => ({
   key,
@@ -28,6 +29,8 @@ const items2 = [UserOutlined, LaptopOutlined, NotificationOutlined].map(
   }
 );
 const Home = () => {
+  const { userLogged } = useContext(AuthContext);
+
   const {
     token: { colorBgContainer },
   } = theme.useToken();
@@ -87,7 +90,7 @@ const Home = () => {
               background: colorBgContainer,
             }}
           >
-            Content
+            {userLogged.nome}
           </Content>
         </Layout>
       </Layout>

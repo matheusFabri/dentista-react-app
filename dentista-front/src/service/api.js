@@ -1,8 +1,7 @@
 import axios from 'axios';
 import { getToken } from '../auth/token';
 
-const urlBase =
-  'https://9be2-2804-14c-fc81-9a1f-edb8-fc98-e433-b59b.ngrok-free.app';
+const urlBase = 'http://localhost:5216';
 
 export async function apiGetAuth(url) {
   const instance = axios.create({

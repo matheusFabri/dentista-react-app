@@ -1,5 +1,5 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { apiGetAuth, apiGetByIdAuth, apiPostAuth } from '../api';
+import { apiGetAuth, apiGetByIdAuth, apiPostAuth } from '../Api';
 
 export function useGetDentistasAuth() {
   return useQuery({

@@ -1,13 +1,18 @@
 import { Button, Form, Input } from 'antd';
-import React from 'react';
+import React, { useContext } from 'react';
 import { Colors } from '../global/Colors';
 import { useNavigate } from 'react-router-dom';
+import { usePostPaciente } from '../service/queries/paciente';
+import { GlobalContext } from '../store/GlobalContext';
 
 function Cadastro() {
-  const navigation = useNavigate();
+  const navigate = useNavigate();
+  const { mutate } = usePostPaciente();
+  const { paciente, setPaciente } = useContext(GlobalContext);
 
   const handleCadastro = () => {
-    navigation('login');
+    mutate(paciente);
+    navigate('/');
   };
 
   return (
@@ -30,9 +35,7 @@ function Cadastro() {
             display: 'flex',
             flexDirection: 'column',
             flexBasis: '50%',
-            alignItems: 'center',
-            // justifyItems: 'stretch',
-            // justifyContent: 'stretch',
+            alignItems: 'stretch',
             backgroundColor: Colors.primaryBackground,
             borderRadius: 5,
             width: '50%',
@@ -45,34 +48,129 @@ function Cadastro() {
           autoComplete="off"
         >
           <Form.Item
-            label="Username"
-            name="username"
+            label="Nome"
+            name="nome"
             rules={[
               {
-                required: true,
+                // required: true,
                 message: 'Please input your username!',
               },
             ]}
           >
-            <Input />
+            <Input
+              value={paciente.nome}
+              onChange={(e) =>
+                setPaciente({ ...paciente, nome: e.target.value })
+              }
+            />
           </Form.Item>
 
           <Form.Item
-            label="Password"
-            name="password"
+            label="E-mail"
+            name="email"
             rules={[
               {
-                required: true,
+                // required: true,
+                message: 'Please input your username!',
+              },
+            ]}
+          >
+            <Input
+              value={paciente.email}
+              onChange={(e) =>
+                setPaciente({ ...paciente, email: e.target.value })
+              }
+            />
+          </Form.Item>
+          <Form.Item
+            label="Login"
+            name="login"
+            rules={[
+              {
+                // required: true,
+                message: 'Please input your username!',
+              },
+            ]}
+          >
+            <Input
+              value={paciente.login}
+              onChange={(e) =>
+                setPaciente({ ...paciente, login: e.target.value })
+              }
+            />
+          </Form.Item>
+          <Form.Item
+            label="Senha"
+            name="senha"
+            rules={[
+              {
+                // required: true,
                 message: 'Please input your password!',
               },
             ]}
           >
-            <Input.Password />
+            <Input.Password
+              value={paciente.senha}
+              onChange={(e) =>
+                setPaciente({ ...paciente, senha: e.target.value })
+              }
+            />
+          </Form.Item>
+          <Form.Item
+            label="Telefone"
+            name="telefone"
+            rules={[
+              {
+                // required: true,
+                message: 'Please input your username!',
+              },
+            ]}
+          >
+            <Input
+              value={paciente.telefone}
+              onChange={(e) =>
+                setPaciente({ ...paciente, telefone: e.target.value })
+              }
+            />
+          </Form.Item>
+          <Form.Item
+            label="CPF"
+            name="cpf"
+            rules={[
+              {
+                // required: true,
+                message: 'Please input your username!',
+              },
+            ]}
+          >
+            <Input
+              value={paciente.cpf}
+              onChange={(e) =>
+                setPaciente({ ...paciente, cpf: e.target.value })
+              }
+            />
+          </Form.Item>
+          <Form.Item
+            label="Data de nascimento"
+            name="dataNasc"
+            rules={[
+              {
+                // required: true,
+                message: 'Please input your username!',
+              },
+            ]}
+          >
+            <Input
+              value={paciente.dataNasc}
+              onChange={(e) =>
+                setPaciente({ ...paciente, dataNasc: e.target.value })
+              }
+            />
           </Form.Item>
 
           <Form.Item wrapperCol={{}}>
             <Button
-              style={{ margin: 10, width: '100%' }}
+              style={{ margin: 10, width: '40%' }}
               type="primary"
               htmlType="submit"
               onClick={handleCadastro}

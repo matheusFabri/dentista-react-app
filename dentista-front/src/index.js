@@ -3,29 +3,40 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
-import Root from './components/Root';
 import Login from './components/Login';
 import Cadastro from './components/Cadastro';
+import Home from './components/Home';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import ContextProvider from './store/GlobalContext';
+import { AuthProvider } from './store/AuthContext';
+
+const queryClient = new QueryClient();
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <Root />,
-  },
-  {
-    path: 'login',
     element: <Login />,
   },
   {
-    path: 'cadastro',
+    path: '/cadastro',
     element: <Cadastro />,
+  },
+  {
+    path: '/home',
+    element: <Home />,
   },
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <ContextProvider>
+      <QueryClientProvider client={queryClient}>
+        <AuthProvider>
+          <RouterProvider router={router} />
+        </AuthProvider>
+      </QueryClientProvider>
+    </ContextProvider>
   </React.StrictMode>
 );
 

@@ -1,5 +1,5 @@
-import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { apiGetAuth, apiGetByIdAuth, apiPost } from '../api';
+import { useQuery, useMutation } from '@tanstack/react-query';
+import { apiGetAuth, apiGetByIdAuth, apiPost } from '../Api';
 
 export function useGetPacientesAuth() {
   return useQuery({

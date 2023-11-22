@@ -1,5 +1,5 @@
-import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { apiGetById, apiLogin } from '../api';
+import { useQuery, useMutation } from '@tanstack/react-query';
+import { apiGetById, apiLogin } from '../Api';
 
 export function useGetByIdPublic(id) {
   return useQuery({
