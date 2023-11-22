@@ -27,8 +27,8 @@ const Login = () => (
         flexDirection: 'column',
         flexBasis: '50%',
         alignItems: 'center',
-        justifyItems: 'stretch',
-        justifyContent: 'stretch',
+        // justifyItems: 'stretch',
+        // justifyContent: 'stretch',
         backgroundColor: Colors.primaryBackground,
         borderRadius: 5,
         width: '50%',
@@ -70,19 +70,24 @@ const Login = () => (
 
       <Form.Item wrapperCol={{}}>
         <Button
-          style={{ margin: 10, width: '100%' }}
+          style={{
+            paddingLeft: 50,
+            paddingRight: 50,
+            margin: 30,
+            width: '40%',
+          }}
           type="primary"
           htmlType="submit"
         >
           Entrar
         </Button>
-        <Button
+        {/* <Button
           style={{ margin: 10, width: '100%' }}
           type="primary"
           htmlType="submit"
         >
           Novo usuário
-        </Button>
+        </Button> */}
       </Form.Item>
     </Form>
   </div>

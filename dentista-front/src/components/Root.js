@@ -3,11 +3,21 @@ import React from 'react';
 import { Colors } from '../global/Colors';
 import { useNavigate } from 'react-router-dom';
 
-function Cadastro() {
+function Root() {
   const navigation = useNavigate();
+  const handleLogin = () => {
+    navigation('login');
+  };
 
   const handleCadastro = () => {
-    navigation('login');
+    navigation('cadastro');
+  };
+
+  const onFinish = (values) => {
+    console.log('Success:', values);
+  };
+  const onFinishFailed = (errorInfo) => {
+    console.log('Failed:', errorInfo);
   };
 
   return (
@@ -36,48 +46,61 @@ function Cadastro() {
             backgroundColor: Colors.primaryBackground,
             borderRadius: 5,
             width: '50%',
-            padding: '3%',
+            padding: 20,
             margin: '5%',
           }}
           initialValues={{
             remember: true,
           }}
+          onFinish={onFinish}
+          onFinishFailed={onFinishFailed}
           autoComplete="off"
         >
-          <Form.Item
-            label="Username"
-            name="username"
-            rules={[
-              {
-                required: true,
-                message: 'Please input your username!',
-              },
-            ]}
-          >
-            <Input />
-          </Form.Item>
+          {/* <Form.Item
+          label="Username"
+          name="username"
+          rules={[
+            {
+              required: true,
+              message: 'Please input your username!',
+            },
+          ]}
+        >
+          <Input />
+        </Form.Item>
 
-          <Form.Item
-            label="Password"
-            name="password"
-            rules={[
-              {
-                required: true,
-                message: 'Please input your password!',
-              },
-            ]}
-          >
-            <Input.Password />
-          </Form.Item>
+        <Form.Item
+          label="Password"
+          name="password"
+          rules={[
+            {
+              required: true,
+              message: 'Please input your password!',
+            },
+          ]}
+        >
+          <Input.Password />
+        </Form.Item> */}
 
           <Form.Item wrapperCol={{}}>
+            <Button
+              style={{
+                margin: 10,
+                width: '100%',
+              }}
+              type="primary"
+              htmlType="submit"
+              onClick={handleLogin}
+            >
+              Login
+            </Button>
             <Button
               style={{ margin: 10, width: '100%' }}
               type="primary"
               htmlType="submit"
               onClick={handleCadastro}
             >
-              Cadastrar
+              Novo usuário
             </Button>
           </Form.Item>
         </Form>
@@ -86,4 +109,4 @@ function Cadastro() {
   );
 }
 
-export default Cadastro;
+export default Root;
