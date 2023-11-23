@@ -2,17 +2,17 @@ import { Button, Form, Input } from 'antd';
 import React, { useContext } from 'react';
 import { Colors } from '../global/Colors';
 import { useNavigate } from 'react-router-dom';
-import { usePostPaciente } from '../service/queries/paciente';
 import { GlobalContext } from '../store/GlobalContext';
+import { usePostDentistaAuth } from '../service/queries/dentista';
 
 function CadastroDentista() {
   const navigate = useNavigate();
-  const { mutate } = usePostPaciente();
+  const { mutate } = usePostDentistaAuth();
   const { dentista, setDentista } = useContext(GlobalContext);
 
   const handleCadastro = () => {
     mutate(dentista);
-    navigate('/');
+    navigate('/listaDentista');
   };
 
   return (
@@ -22,9 +22,10 @@ function CadastroDentista() {
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
-          backgroundColor: Colors.secondary,
+          backgroundColor: Colors.secondaryDarkTheme,
           width: '100vw',
           height: '100vh',
+          paddingRight: 300,
         }}
       >
         <Form
@@ -34,11 +35,11 @@ function CadastroDentista() {
           style={{
             display: 'flex',
             flexDirection: 'column',
-            flexBasis: '50%',
+            // flexBasis: '50%',
             alignItems: 'stretch',
             backgroundColor: Colors.primaryBackground,
             borderRadius: 5,
-            width: '50%',
+            width: '40%',
             padding: '3%',
             margin: '5%',
           }}

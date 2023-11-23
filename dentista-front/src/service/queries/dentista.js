@@ -1,5 +1,11 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { apiGetAuth, apiGetByIdAuth, apiPostAuth } from '../Api';
+import {
+  apiDeleteAuth,
+  apiGetAuth,
+  apiGetByIdAuth,
+  apiPostAuth,
+  apiPutAuth,
+} from '../Api';
 
 export function useGetDentistasAuth() {
   return useQuery({
@@ -23,6 +29,22 @@ export function usePostDentistaAuth() {
   return useMutation({
     mutationFn: async (dentista) => {
       return await apiPostAuth('dentista', dentista);
+    },
+  });
+}
+
+export function usePutDentistaAuth() {
+  return useMutation({
+    mutationFn: async (dentista, id) => {
+      return await apiPutAuth('dentista', id, dentista);
+    },
+  });
+}
+
+export function useDeleteDentistaAuth() {
+  return useMutation({
+    mutationFn: async (id) => {
+      return await apiDeleteAuth('dentista', id);
     },
   });
 }

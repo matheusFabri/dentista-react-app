@@ -113,7 +113,14 @@ const Home = () => {
     if (e.key === 'cadastroDentistaAdmin') {
       navigate('/cadastroDentista');
     }
+    if (e.key === 'listDentistaAdmin') {
+      navigate('/listaDentista');
+    }
+    if (e.key === 'listConsultaAdmin') {
+      navigate('/listaConsulta');
+    }
   };
+
   const handleLogout = () => {
     logout();
     navigate('/login');
@@ -132,6 +139,12 @@ const Home = () => {
           display: 'flex',
           // alignItems: 'center',
           justifyContent: 'flex-start',
+          overflow: 'auto',
+          height: '100vh',
+          position: 'fixed',
+          left: 0,
+          top: 0,
+          bottom: 0,
         }}
       >
         {userLogged.role === 'Paciente' && (
@@ -159,8 +172,12 @@ const Home = () => {
           ></Menu>
         )}
       </Sider>
-      <Layout>
-        <Header
+      <Layout
+        style={{
+          marginLeft: '18%',
+        }}
+      >
+        {/* <Header
           style={{
             padding: 10,
             background: Colors.primaryBackground,
@@ -174,7 +191,7 @@ const Home = () => {
           >
             Olá, {userLogged.nome}
           </div>
-        </Header>
+        </Header> */}
         <Content
           style={
             {
@@ -192,7 +209,7 @@ const Home = () => {
           </Breadcrumb> */}
           <div
             style={{
-              padding: 24,
+              // padding: 24,
               minHeight: '100%',
               background: Colors.primaryBackground,
             }}

@@ -26,9 +26,11 @@ const Login = () => {
 
   const handleLogin = async () => {
     await login();
-    if (autenticado) {
-      navigate('/');
-    }
+    setTimeout(() => {
+      if (autenticado) {
+        navigate('/');
+      }
+    }, 100);
   };
 
   return (

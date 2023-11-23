@@ -42,8 +42,9 @@ export const AuthProvider = ({ children }) => {
       telefone: res.usuario.telefone,
       ativo: res.usuario.ativo,
     });
-
-    setAutenticado(true);
+    if (res.status === 1) {
+      setAutenticado(true);
+    }
   };
 
   const logout = () => {

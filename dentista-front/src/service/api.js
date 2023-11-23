@@ -61,6 +61,20 @@ export async function apiPutAuth(url, id, objeto) {
   }
 }
 
+export async function apiDeleteAuth(url, id) {
+  const instance = axios.create({
+    baseURL: `${urlBase}`,
+    timeout: 1000,
+    headers: { Authorization: 'Bearer ' + getToken() },
+  });
+
+  try {
+    instance.delete(`/v1/${url}/${id}`);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
 export async function apiGetById(id) {
   try {
     const response = await axios.get(`${urlBase}/v1/home/${id}`);
