@@ -34,15 +34,13 @@ function ContextProvider({ children }) {
   });
 
   const [dentista, setDentista] = useState({
-    nome: 'Dentista',
-    email: 'matheus@email.com',
-    login: 'dentista@email.com',
-    senha: '123',
-    telefone: '543243534',
-    cpf: '2134326546',
-    dataNasc: '12/04/1996',
-    cro: '432143',
-    especialidade: { tipo: 'Ortodontia', valorBase: 300 },
+    nome: '',
+    email: '',
+    login: '',
+    senha: '',
+    telefone: '',
+    cpf: '',
+    dataNasc: '',
   });
 
   const [consulta, setConsulta] = useState({
@@ -63,7 +61,6 @@ function ContextProvider({ children }) {
       telefone: '',
       cpf: '',
       dataNasc: '',
-      cro: '',
     },
     dataConsulta: '',
     horaConsulta: '',

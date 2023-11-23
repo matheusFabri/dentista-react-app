@@ -3,10 +3,14 @@ import { Button, Form, Input } from 'antd';
 import { Colors } from '../global/Colors';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../store/AuthContext';
+import { getToken } from '../auth/token';
 
 const Login = () => {
   const navigate = useNavigate();
-  const { user, setUser, login } = useContext(AuthContext);
+  const { user, setUser, login, autenticado } = useContext(AuthContext);
+
+  // const token = getToken();
+  // console.log(token);
 
   const onFinish = (values) => {
     console.log('Success:', values);
@@ -22,7 +26,9 @@ const Login = () => {
 
   const handleLogin = async () => {
     await login();
-    navigate('/home');
+    if (autenticado) {
+      navigate('/');
+    }
   };
 
   return (

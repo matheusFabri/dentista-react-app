@@ -1,13 +1,14 @@
 import { createContext, useState } from 'react';
-import { setToken } from '../auth/token';
+import { getToken, removeToken, setToken } from '../auth/token';
 import { apiLogin } from '../service/Api';
 
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
+  const [autenticado, setAutenticado] = useState(false);
   const [user, setUser] = useState({
-    login: 'testeAdmin',
-    password: '123',
+    login: '',
+    password: '',
   });
 
   const [userLogged, setUserLogged] = useState({
@@ -25,6 +26,7 @@ export const AuthProvider = ({ children }) => {
   const login = async () => {
     const res = await apiLogin(user);
 
+    console.log(res);
     const token = res.result;
     setToken(token);
 
@@ -40,14 +42,31 @@ export const AuthProvider = ({ children }) => {
       telefone: res.usuario.telefone,
       ativo: res.usuario.ativo,
     });
+
+    setAutenticado(true);
   };
 
-  //   const logout = () => {
-  //     setUser(null);
-  //   };
+  const logout = () => {
+    removeToken();
+    setUserLogged({
+      ...userLogged,
+      id: 0,
+      nome: '',
+      email: '',
+      login: '',
+      role: '',
+      cpf: '',
+      dataNasc: '',
+      telefone: '',
+      ativo: '',
+    });
+    setAutenticado(false);
+  };
 
   return (
-    <AuthContext.Provider value={{ user, setUser, login, userLogged }}>
+    <AuthContext.Provider
+      value={{ user, setUser, login, userLogged, logout, autenticado }}
+    >
       {children}
     </AuthContext.Provider>
   );

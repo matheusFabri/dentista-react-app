@@ -9,23 +9,9 @@ import Home from './components/Home';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import ContextProvider from './store/GlobalContext';
 import { AuthProvider } from './store/AuthContext';
+import Rotas from './Rotas';
 
 const queryClient = new QueryClient();
-
-const router = createBrowserRouter([
-  {
-    path: '/',
-    element: <Login />,
-  },
-  {
-    path: '/cadastro',
-    element: <Cadastro />,
-  },
-  {
-    path: '/home',
-    element: <Home />,
-  },
-]);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -33,7 +19,7 @@ root.render(
     <ContextProvider>
       <QueryClientProvider client={queryClient}>
         <AuthProvider>
-          <RouterProvider router={router} />
+          <Rotas />
         </AuthProvider>
       </QueryClientProvider>
     </ContextProvider>

@@ -10,3 +10,6 @@ export const getToken = () => {
 export const setToken = (token) => {
   cookies.set('jwt_auth', token);
 };
+export const removeToken = () => {
+  cookies.remove('jwt_auth');
+};

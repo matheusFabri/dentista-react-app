@@ -5,14 +5,14 @@ import { useNavigate } from 'react-router-dom';
 import { usePostPaciente } from '../service/queries/paciente';
 import { GlobalContext } from '../store/GlobalContext';
 
-function Cadastro() {
+function CadastroDentista() {
   const navigate = useNavigate();
   const { mutate } = usePostPaciente();
-  const { paciente, setPaciente } = useContext(GlobalContext);
+  const { dentista, setDentista } = useContext(GlobalContext);
 
   const handleCadastro = () => {
-    mutate(paciente);
-    navigate('/login');
+    mutate(dentista);
+    navigate('/');
   };
 
   return (
@@ -58,9 +58,9 @@ function Cadastro() {
             ]}
           >
             <Input
-              value={paciente.nome}
+              value={dentista.nome}
               onChange={(e) =>
-                setPaciente({ ...paciente, nome: e.target.value })
+                setDentista({ ...dentista, nome: e.target.value })
               }
             />
           </Form.Item>
@@ -76,9 +76,9 @@ function Cadastro() {
             ]}
           >
             <Input
-              value={paciente.email}
+              value={dentista.email}
               onChange={(e) =>
-                setPaciente({ ...paciente, email: e.target.value })
+                setDentista({ ...dentista, email: e.target.value })
               }
             />
           </Form.Item>
@@ -93,9 +93,9 @@ function Cadastro() {
             ]}
           >
             <Input
-              value={paciente.login}
+              value={dentista.login}
               onChange={(e) =>
-                setPaciente({ ...paciente, login: e.target.value })
+                setDentista({ ...dentista, login: e.target.value })
               }
             />
           </Form.Item>
@@ -110,9 +110,9 @@ function Cadastro() {
             ]}
           >
             <Input.Password
-              value={paciente.senha}
+              value={dentista.senha}
               onChange={(e) =>
-                setPaciente({ ...paciente, senha: e.target.value })
+                setDentista({ ...dentista, senha: e.target.value })
               }
             />
           </Form.Item>
@@ -127,9 +127,9 @@ function Cadastro() {
             ]}
           >
             <Input
-              value={paciente.telefone}
+              value={dentista.telefone}
               onChange={(e) =>
-                setPaciente({ ...paciente, telefone: e.target.value })
+                setDentista({ ...dentista, telefone: e.target.value })
               }
             />
           </Form.Item>
@@ -144,9 +144,9 @@ function Cadastro() {
             ]}
           >
             <Input
-              value={paciente.cpf}
+              value={dentista.cpf}
               onChange={(e) =>
-                setPaciente({ ...paciente, cpf: e.target.value })
+                setDentista({ ...dentista, cpf: e.target.value })
               }
             />
           </Form.Item>
@@ -161,9 +161,9 @@ function Cadastro() {
             ]}
           >
             <Input
-              value={paciente.dataNasc}
+              value={dentista.dataNasc}
               onChange={(e) =>
-                setPaciente({ ...paciente, dataNasc: e.target.value })
+                setDentista({ ...dentista, dataNasc: e.target.value })
               }
             />
           </Form.Item>
@@ -184,4 +184,4 @@ function Cadastro() {
   );
 }
 
-export default Cadastro;
+export default CadastroDentista;
