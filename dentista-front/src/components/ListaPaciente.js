@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { Divider, List, Typography } from 'antd';
 import CardDentista from './CardDentista';
-import { useGetDentistasAuth } from '../service/queries/dentista';
 import { Colors } from '../global/Colors';
+import { useGetPacientesAuth } from '../service/queries/paciente';
+import CardPaciente from './CardPaciente';
 
-const ListaDentista = () => {
-  const { data, isLoading } = useGetDentistasAuth();
+const ListaPaciente = () => {
+  const { data, isLoading } = useGetPacientesAuth();
   const [filtro, setFiltro] = useState([]);
   const [pesquisa, setPesquisa] = useState('');
 
@@ -29,7 +30,7 @@ const ListaDentista = () => {
       <div
         style={{ display: 'flex', paddingLeft: '42%', color: Colors.primary }}
       >
-        <h1 style={{ fontSize: 32 }}>Dentistas</h1>
+        <h1 style={{ fontSize: 32 }}>Pacientes</h1>
       </div>
       <div style={{ marginLeft: 10 }}>
         <label>Filtro por nome:</label>
@@ -44,13 +45,13 @@ const ListaDentista = () => {
         <List
           size="large"
           bordered
-          dataSource={data}
+          dataSource={filtro.length === 0 ? data : filtro}
           renderItem={(item) => (
-            <CardDentista key={item.id} loading={isLoading} item={item} />
+            <CardPaciente key={item.id} loading={isLoading} item={item} />
           )}
         />
       )}
     </>
   );
 };
-export default ListaDentista;
+export default ListaPaciente;

@@ -26,24 +26,29 @@ export const AuthProvider = ({ children }) => {
   const login = async () => {
     const res = await apiLogin(user);
 
-    console.log(res);
-    const token = res.result;
-    setToken(token);
+    // console.log(res);
+    if (res !== undefined) {
+      const token = res.result;
+      setToken(token);
 
-    setUserLogged({
-      ...userLogged,
-      id: res.usuario.id,
-      nome: res.usuario.nome,
-      email: res.usuario.email,
-      login: res.usuario.login,
-      role: res.usuario.role,
-      cpf: res.usuario.cpf,
-      dataNasc: res.usuario.dataNasc,
-      telefone: res.usuario.telefone,
-      ativo: res.usuario.ativo,
-    });
-    if (res.status === 1) {
-      setAutenticado(true);
+      setUserLogged({
+        ...userLogged,
+        id: res.usuario.id,
+        nome: res.usuario.nome,
+        email: res.usuario.email,
+        login: res.usuario.login,
+        role: res.usuario.role,
+        cpf: res.usuario.cpf,
+        dataNasc: res.usuario.dataNasc,
+        telefone: res.usuario.telefone,
+        ativo: res.usuario.ativo,
+      });
+      if (res.status === 1) {
+        setAutenticado(true);
+        return true;
+      }
+    } else {
+      return false;
     }
   };
 
@@ -64,9 +69,21 @@ export const AuthProvider = ({ children }) => {
     setAutenticado(false);
   };
 
+  const limpaUser = () => {
+    setUser({ ...user, login: '', password: '' });
+  };
+
   return (
     <AuthContext.Provider
-      value={{ user, setUser, login, userLogged, logout, autenticado }}
+      value={{
+        user,
+        setUser,
+        login,
+        userLogged,
+        logout,
+        autenticado,
+        limpaUser,
+      }}
     >
       {children}
     </AuthContext.Provider>

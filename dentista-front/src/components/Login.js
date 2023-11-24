@@ -1,16 +1,14 @@
-import React, { useContext } from 'react';
-import { Button, Form, Input } from 'antd';
+import React, { useContext, useState } from 'react';
+import { Alert, Button, Form, Image, Input } from 'antd';
 import { Colors } from '../global/Colors';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../store/AuthContext';
-import { getToken } from '../auth/token';
+import Odonto from '../assets/imgs/odonto.png';
 
 const Login = () => {
   const navigate = useNavigate();
-  const { user, setUser, login, autenticado } = useContext(AuthContext);
-
-  // const token = getToken();
-  // console.log(token);
+  const { user, setUser, login, limpaUser } = useContext(AuthContext);
+  const [alert, setAlert] = useState(false);
 
   const onFinish = (values) => {
     console.log('Success:', values);
@@ -25,12 +23,15 @@ const Login = () => {
   };
 
   const handleLogin = async () => {
-    await login();
-    setTimeout(() => {
-      if (autenticado) {
+    if (user.login !== '' || user.password !== '') {
+      if (await login()) {
         navigate('/');
+        setAlert(false);
+        limpaUser();
+      } else {
+        setAlert(true);
       }
-    }, 100);
+    }
   };
 
   return (
@@ -44,6 +45,13 @@ const Login = () => {
         height: '100vh',
       }}
     >
+      {alert && (
+        <Alert
+          style={{ marginTop: 20 }}
+          message="Usuário não cadastrado!"
+          type="error"
+        />
+      )}
       <Form
         name="basic"
         labelCol={{}}
@@ -51,7 +59,6 @@ const Login = () => {
         style={{
           display: 'flex',
           flexDirection: 'column',
-          flexBasis: '50%',
           alignItems: 'center',
           // justifyItems: 'stretch',
           // justifyContent: 'stretch',
@@ -68,13 +75,16 @@ const Login = () => {
         onFinishFailed={onFinishFailed}
         autoComplete="off"
       >
+        <Form.Item>
+          <Image width={250} src={Odonto} />
+        </Form.Item>
         <Form.Item
-          label="Username"
+          label="Login"
           name="username"
           rules={[
             {
               required: true,
-              message: 'Please input your username!',
+              message: 'Login inválido!',
             },
           ]}
         >
@@ -85,12 +95,12 @@ const Login = () => {
         </Form.Item>
 
         <Form.Item
-          label="Password"
+          label="Senha"
           name="password"
           rules={[
             {
               required: true,
-              message: 'Please input your password!',
+              message: 'Senha inválida!',
             },
           ]}
         >

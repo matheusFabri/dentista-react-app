@@ -35,8 +35,8 @@ export function usePostDentistaAuth() {
 
 export function usePutDentistaAuth() {
   return useMutation({
-    mutationFn: async (dentista, id) => {
-      return await apiPutAuth('dentista', id, dentista);
+    mutationFn: async (data) => {
+      return await apiPutAuth('dentista', data.id, data.dentista);
     },
   });
 }

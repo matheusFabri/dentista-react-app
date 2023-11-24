@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { getToken } from '../auth/token';
 
+// const urlBase = 'http://35.173.144.244';
 const urlBase = 'http://localhost:5216';
 
 export async function apiGetAuth(url) {

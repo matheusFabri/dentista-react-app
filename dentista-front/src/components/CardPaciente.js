@@ -1,19 +1,10 @@
 import React, { useContext } from 'react';
 import { Button, Card } from 'antd';
-import {
-  DesktopOutlined,
-  FileOutlined,
-  PieChartOutlined,
-  TeamOutlined,
-  UserOutlined,
-  LogoutOutlined,
-} from '@ant-design/icons';
-import { useDeleteDentistaAuth } from '../service/queries/dentista';
 import { useNavigate } from 'react-router-dom';
-import { GlobalContext } from '../store/GlobalContext';
+import { useDeletePacienteAuth } from '../service/queries/paciente';
 
-const CardDentista = ({ item, loading }) => {
-  const { mutate } = useDeleteDentistaAuth();
+const CardPaciente = ({ item, loading }) => {
+  const { mutate } = useDeletePacienteAuth();
 
   const navigate = useNavigate();
 
@@ -22,7 +13,7 @@ const CardDentista = ({ item, loading }) => {
   };
 
   const handlePut = () => {
-    navigate(`/alteraDentista/${item.id}`);
+    navigate(`/alteraPaciente/${item.id}`);
   };
 
   return (
@@ -54,4 +45,4 @@ const CardDentista = ({ item, loading }) => {
     </Card>
   );
 };
-export default CardDentista;
+export default CardPaciente;

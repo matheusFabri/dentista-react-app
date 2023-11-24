@@ -15,7 +15,6 @@ import { Outlet, useNavigate } from 'react-router-dom';
 const { Header, Content, Footer, Sider } = Layout;
 
 const itemsPaciente = [
-  { label: 'Dashboard', key: 'dashboardPaciente', icon: <PieChartOutlined /> },
   {
     label: 'Consultas',
     key: 'consultasPaciente',
@@ -72,6 +71,18 @@ const itemsAdmin = [
       },
     ],
   },
+  {
+    label: 'Pacientes',
+    key: 'pacientesAdmin',
+    icon: <PieChartOutlined />,
+    children: [
+      {
+        label: 'Listar Pacientes',
+        key: 'listPacienteAdmin',
+        icon: <UserOutlined />,
+      },
+    ],
+  },
   { label: 'Logout', key: 'logoutAdmin', icon: <UserOutlined />, danger: true },
 ];
 
@@ -116,8 +127,21 @@ const Home = () => {
     if (e.key === 'listDentistaAdmin') {
       navigate('/listaDentista');
     }
-    if (e.key === 'listConsultaAdmin') {
+    if (
+      e.key === 'listConsultaAdmin' ||
+      e.key === 'histConsultaPaciente' ||
+      e.key === 'listConsultaDentista'
+    ) {
       navigate('/listaConsulta');
+    }
+    if (e.key === 'novaConsultaPaciente') {
+      navigate('/novaConsulta');
+    }
+    if (e.key === 'dashboardAdmin' || e.key === 'dashboardDentista') {
+      navigate('/dashboard');
+    }
+    if (e.key === 'listPacienteAdmin') {
+      navigate('/listaPaciente');
     }
   };
 
@@ -133,7 +157,7 @@ const Home = () => {
       }}
     >
       <Sider
-        width="18%"
+        width="22%"
         style={{
           paddingTop: 20,
           display: 'flex',
@@ -174,7 +198,7 @@ const Home = () => {
       </Sider>
       <Layout
         style={{
-          marginLeft: '18%',
+          marginLeft: '22%',
         }}
       >
         {/* <Header

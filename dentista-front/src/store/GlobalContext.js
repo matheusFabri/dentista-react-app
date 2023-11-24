@@ -33,7 +33,28 @@ function ContextProvider({ children }) {
     // },
   });
 
+  const [pacientePut, setPacientePut] = useState({
+    nome: '',
+    email: '',
+    login: '',
+    senha: '',
+    telefone: '',
+    cpf: '',
+    dataNasc: '',
+  });
+
   const [dentista, setDentista] = useState({
+    nome: '',
+    email: '',
+    login: '',
+    senha: '',
+    telefone: '',
+    cpf: '',
+    dataNasc: '',
+  });
+
+  const [dentistaConsulta, setDentistaConsulta] = useState({
+    id: 0,
     nome: '',
     email: '',
     login: '',
@@ -127,6 +148,10 @@ function ContextProvider({ children }) {
         // buscaCep,
         consulta,
         setConsulta,
+        dentistaConsulta,
+        setDentistaConsulta,
+        pacientePut,
+        setPacientePut,
       }}
     >
       {children}

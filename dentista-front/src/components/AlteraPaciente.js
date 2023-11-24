@@ -3,22 +3,18 @@ import React, { useContext, useState } from 'react';
 import { Colors } from '../global/Colors';
 import { useNavigate, useParams } from 'react-router-dom';
 import { GlobalContext } from '../store/GlobalContext';
-import {
-  useGetDentistaByIdAuth,
-  usePutDentistaAuth,
-} from '../service/queries/dentista';
+import { usePutPacienteAuth } from '../service/queries/paciente';
 
-function AlteraDentista() {
+function AlteraPaciente() {
   const navigate = useNavigate();
-  const { mutate } = usePutDentistaAuth();
-  const { dentista, setDentista } = useContext(GlobalContext);
+  const { mutate } = usePutPacienteAuth();
+  const { pacientePut, setPacientePut } = useContext(GlobalContext);
 
   let { id } = useParams();
 
   const handleCadastro = () => {
-    // setDentista({ ...dentista, id: id });
-    mutate({ dentista: dentista, id: id });
-    navigate('/listaDentista');
+    mutate({ paciente: pacientePut, id: id });
+    navigate('/listaPaciente');
   };
 
   return (
@@ -62,7 +58,7 @@ function AlteraDentista() {
                 color: Colors.primary,
               }}
             >
-              Alterar Dentista
+              Alterar Paciente
             </p>
           </Form.Item>
           <Form.Item
@@ -76,9 +72,13 @@ function AlteraDentista() {
             ]}
           >
             <Input
-              value={dentista.nome}
+              value={pacientePut.nome}
               onChange={(e) => {
-                setDentista({ ...dentista, nome: e.target.value, id: id });
+                setPacientePut({
+                  ...pacientePut,
+                  nome: e.target.value,
+                  id: id,
+                });
               }}
             />
           </Form.Item>
@@ -94,9 +94,9 @@ function AlteraDentista() {
             ]}
           >
             <Input
-              value={dentista.email}
+              value={pacientePut.email}
               onChange={(e) =>
-                setDentista({ ...dentista, email: e.target.value })
+                setPacientePut({ ...pacientePut, email: e.target.value })
               }
             />
           </Form.Item>
@@ -111,9 +111,9 @@ function AlteraDentista() {
             ]}
           >
             <Input
-              value={dentista.login}
+              value={pacientePut.login}
               onChange={(e) =>
-                setDentista({ ...dentista, login: e.target.value })
+                setPacientePut({ ...pacientePut, login: e.target.value })
               }
             />
           </Form.Item>
@@ -128,9 +128,9 @@ function AlteraDentista() {
             ]}
           >
             <Input.Password
-              value={dentista.senha}
+              value={pacientePut.senha}
               onChange={(e) =>
-                setDentista({ ...dentista, senha: e.target.value })
+                setPacientePut({ ...pacientePut, senha: e.target.value })
               }
             />
           </Form.Item>
@@ -145,9 +145,9 @@ function AlteraDentista() {
             ]}
           >
             <Input
-              value={dentista.telefone}
+              value={pacientePut.telefone}
               onChange={(e) =>
-                setDentista({ ...dentista, telefone: e.target.value })
+                setPacientePut({ ...pacientePut, telefone: e.target.value })
               }
             />
           </Form.Item>
@@ -162,9 +162,9 @@ function AlteraDentista() {
             ]}
           >
             <Input
-              value={dentista.cpf}
+              value={pacientePut.cpf}
               onChange={(e) =>
-                setDentista({ ...dentista, cpf: e.target.value })
+                setPacientePut({ ...pacientePut, cpf: e.target.value })
               }
             />
           </Form.Item>
@@ -179,9 +179,9 @@ function AlteraDentista() {
             ]}
           >
             <Input
-              value={dentista.dataNasc}
+              value={pacientePut.dataNasc}
               onChange={(e) =>
-                setDentista({ ...dentista, dataNasc: e.target.value })
+                setPacientePut({ ...pacientePut, dataNasc: e.target.value })
               }
             />
           </Form.Item>
@@ -202,4 +202,4 @@ function AlteraDentista() {
   );
 }
 
-export default AlteraDentista;
+export default AlteraPaciente;
